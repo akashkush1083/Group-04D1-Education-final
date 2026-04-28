@@ -17,7 +17,7 @@ from agentic_system import create_study_guide, create_explanation
 load_dotenv()
 
 # Page config
-st.set_page_config(page_title="EduFusion AI", page_icon="🚀", layout="wide")
+st.set_page_config(page_title="LearnWithMe", page_icon="🚀", layout="wide")
 
 # Custom CSS - Modern Dark Theme
 st.markdown("""
