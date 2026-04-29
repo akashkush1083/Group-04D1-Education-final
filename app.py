@@ -403,15 +403,17 @@ if generate_btn and user_prompt and user_prompt.strip():
                 enhanced_prompt = user_prompt
                 
                 if pdf_found or explanation_found or conversation_context:
+                    pdf_section = f"PDF Context:\n{pdf_context}" if pdf_found else ""
+                    explanation_section = f"Previous Explanations:\n{explanation_context}" if explanation_found else ""
                     enhanced_prompt = f"""
                     {user_prompt}
                     
                     Context to consider:
-                    {conversation_context if conversation_context else ""}
+                    {conversation_context}
                     
-                    {f"PDF Context:\n{pdf_context}" if pdf_found else ""}
+                    {pdf_section}
                     
-                    {f"Previous Explanations:\n{explanation_context}" if explanation_found else ""}
+                    {explanation_section}
                     
                     Instructions:
                     - Use the provided context (conversation, PDF, previous explanations) to enhance your answer
@@ -427,14 +429,16 @@ if generate_btn and user_prompt and user_prompt.strip():
                 except Exception as e:
                     # Fallback to direct LLM if agentic fails
                     print(f"Agentic error: {e}")
+                    pdf_section = f"PDF Context:\n{pdf_context}" if pdf_found else ""
+                    explanation_section = f"Previous Explanations:\n{explanation_context}" if explanation_found else ""
                     prompt = f"""
                     Answer this question: {user_prompt}
                     
-                    {conversation_context if conversation_context else ""}
+                    {conversation_context}
                     
-                    {f"PDF Context:\n{pdf_context}" if pdf_found else ""}
+                    {pdf_section}
                     
-                    {f"Previous Explanations:\n{explanation_context}" if explanation_found else ""}
+                    {explanation_section}
                     
                     Provide a comprehensive, well-structured answer in Markdown format.
                     """
