@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ secrets.EC2_HOST_FINAL }}
           username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.EC2_KEY_FINAL }}
           script: "KUBECONFIG=/etc/rancher/k3s/k3s.yaml kubectl set image deployment/education2-deployment education2=${{ secrets.DOCKER_USERNAME }}/eduaction2:latest"
